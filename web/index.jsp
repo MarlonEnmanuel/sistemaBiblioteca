@@ -1,17 +1,8 @@
 <%-- 
-    Document   : index
-    Created on : 02-feb-2017, 21:31:09
-    Author     : MiguelSc
+    Document   : index.jsp
+    Created on : 06/02/2017, 05:05:27 PM
+    Author     : Enmanuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<% response.sendRedirect("login.jsp"); %>
