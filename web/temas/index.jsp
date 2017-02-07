@@ -13,16 +13,16 @@
 <html lang="es">
     <head>
         <%@include file="../partials/headapp.html" %>
-        <title>Categorías</title>
+        <title>Temas</title>
     </head>
     <body>
         <jsp:include page="../partials/header.jsp">
-            <jsp:param name="title" value="Categorías"/>
+            <jsp:param name="title" value="Temas"/>
         </jsp:include>
         <main>
             <div class="container">
 		<div class="right-align">
-		    <a href="agregar.jsp" class="waves-effect waves-light btn">Nueva Categoría</a>
+		    <a href="agregar.jsp" class="waves-effect waves-light btn">Nuevo Tema</a>
 		</div>
 		<br>
                 <table class="bordered striped">
@@ -31,8 +31,7 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Descripción</th>
-                            <th>Datos</th>
-			    <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +44,6 @@
                             <td><%=cat.getIdcategoria()%></td>
                             <td><%=cat.getNombre()%></td>
                             <td><%=cat.getDescripcion()%></td>
-                            <td><%=cat.getDatos()%></td>
                             <td width="68">
                                 <a class="editar" href="editar.jsp?id=<%=cat.getIdcategoria()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
                                 <a class="elimin" href="eliminar.jsp?id=<%=cat.getIdcategoria()%>" title="Eliminar"><i class="material-icons">delete</i></a>
