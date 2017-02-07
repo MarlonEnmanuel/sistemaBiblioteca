@@ -10,7 +10,9 @@
         <title>Bienvenido</title>
     </head>
     <body>
-	<%@include file="partials/header.jsp" %>
+	<jsp:include page="/partials/header.jsp">
+	    <jsp:param name="title" value="Inicio"/>
+	</jsp:include>
         <main>
             
         </main>
