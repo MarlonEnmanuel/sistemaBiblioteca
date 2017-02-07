@@ -6,38 +6,41 @@
 <html lang="es">
     <head>
 	<%@include file="../partials/headapp.html" %>
-	<title>Agregar Categoría</title>
+	<title>Agregar Copia</title>
     </head>
     <body>
 	<jsp:include page="../partials/header.jsp">
-	    <jsp:param name="title" value="Nueva Categoría"/>
+	    <jsp:param name="title" value="Nueva Copia"/>
 	</jsp:include>
 	<main>
 	    <div class="container">
 
-		<form action="/sistemaBiblioteca/servlets/categoria" method="POST">
+		<form action="/sistemaBiblioteca/servlets/copia" method="POST" class="row">
 		    <input type="hidden" name="accion" value="insertar">
 
-		    <div class="input-field">
-			<input type="text" id="nombre" name="nombre" class="validate" maxlength="45" tabindex="1" autofocus>
-			<label for="nombre">Nombre de la Categoría</label>
-		    </div>
-		    <div class="input-field">
-			<input type="text" id="descrip" name="descrip" class="validate" tabindex="2">
-			<label for="descrip">Descripción</label>
+		    <div class="col s12 input-field">
+			<input type="text" id="codigoejemplar" name="codigoejemplar" class="validate" maxlength="45" tabindex="1" autofocus>
+			<label for="codigoejemplar">Código del Ejemplar</label>
 		    </div>
 
-		    <br>
-		    <br>
-
-		    <p>Cada ejemplar registra su código, título, autores, y la fecha de publicación. Sin embargo puede indicar separado por comas, datos adicionales que se deseen registrar para cada ejemplar de esta categoría.</p>
-		    <br>
-		    <div class="input-field">
-			<input type="text" id="datos" name="datos" class="validate" tabindex="3" placeholder="Coautor, Pagina Web, Volumen, Edicion">
-			<label for="datos">Datos Adicionales</label>
+		    <div class="col s12 input-field">
+			<input type="text" id="codigo" name="codigo" class="validate" maxlength="45" tabindex="2">
+			<label for="codigo">Código de la Copia</label>
 		    </div>
-		    <div class="input-field">
-			<a class="waves-effect waves-light btn left" onclick="history.back()">Cancelar</A>
+
+		    <div class="col s6 input-field">
+			<input class="filled-in" type="checkbox" id="estado" name="estado" tabindex="3" checked>
+			<label for="estado">Estado</label>
+		    </div>
+
+		    <div class="col s6 input-field">
+			<input class="filled-in" type="checkbox" id="disponible" name="disponible" tabindex="3" checked>
+			<label for="disponible">Disponible</label>
+		    </div>
+
+		    <div class="col s12 input-field">
+			<br><br>
+			<a class="waves-effect waves-light btn left" onclick="history.back()">Cancelar</a>
 			<button tabindex="4" class="waves-effect waves-light btn right">Guardar</button>
 		    </div>
 		</form>
