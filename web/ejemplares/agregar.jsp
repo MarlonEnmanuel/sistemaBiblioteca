@@ -71,7 +71,11 @@
 	    $('.datepicker').pickadate({
 		selectMonths: true,
 		selectYears: 200,
-		max: new Date()
+		max: new Date(),
+		onthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		monthsShort: ['Ene', 'Feb', 'Mar', 'bpr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic'],
+		weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'],
+		weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
 	    });
 	    $('select').material_select();
 	    Materialize.toast('<%= p_msj%>');
