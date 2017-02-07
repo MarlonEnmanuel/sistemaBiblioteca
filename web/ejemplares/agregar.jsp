@@ -76,6 +76,7 @@
 		monthsShort: ['Ene', 'Feb', 'Mar', 'bpr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic'],
 		weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'],
 		weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+		format: 'dd/mm/yyyy',
 	    });
 	    $('select').material_select();
 	    Materialize.toast('<%= p_msj%>');
