@@ -31,6 +31,13 @@ public class auth extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        /**
+        * Parámetros recibidos
+        * action (login,logout)
+        * user (Usuario a logear)
+        * pass (Contraseña)
+        */
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
