@@ -5,12 +5,15 @@
  */
 package servlets;
 
+import entidad.eUsuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.modeloLogeo;
 
 /**
  *
@@ -41,7 +44,19 @@ public class auth extends HttpServlet {
         try {
             String usu=request.getParameter("user");
             String pass=request.getParameter("pass");
+            System.out.println(usu+"-"+pass);
+            modeloLogeo ml=new modeloLogeo();
+            eUsuario User=ml.retornaUsuario(usu, pass);
             
+            if(User!=null){
+                System.out.println(User);
+                response.sendRedirect("/sistemaBiblioteca/app.jsp");
+                HttpSession session=request.getSession(true);
+                session.setAttribute("Usuario", User);
+            }else{
+                response.sendRedirect("/sistemaBiblioteca/login.jsp?msj=usuario incorrecto");
+            }
+                    
         } finally {
             
         }
