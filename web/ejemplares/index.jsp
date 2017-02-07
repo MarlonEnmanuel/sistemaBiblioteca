@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="entidad.eEjemplar"%>
+<%@page import="modelo.eEjemplarJpaController"%>
 <%@page import="modelo.eCategoriaJpaController"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -5,6 +8,8 @@
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_user = request.getParameter("user") != null ? request.getParameter("user") : "";
+    modelo.eEjemplarJpaController ejc=new eEjemplarJpaController();
+    List<eEjemplar> lseje = ejc.findeEjemplarEntities();
     modelo.eCategoriaJpaController mm = new eCategoriaJpaController();
     List<eCategoria> ls = mm.findeCategoriaEntities();
 %>
@@ -39,19 +44,21 @@
 		    </thead>
 		    <tbody>
 			<%
-			    for (Iterator it = ls.iterator(); it.hasNext();) {
+			    for (Iterator it = lseje.iterator(); it.hasNext();) {
 				int i = 0;
-				eCategoria cat = (eCategoria) it.next();
+				eEjemplar eje = (eEjemplar) it.next();
+                                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 			%>
 			<tr>
-			    <td><%= "Hola"%></td>
-			    <td><%= "Hola"%></td>
-			    <td><%= "Hola"%></td>
-			    <td><%= "Hola"%></td>
-			    <td><%= "Hola"%></td>
+			    <td><%=eje.getIdejemplar()%></td>
+			    <td>hola</td>
+			    <td><%=eje.getCodigo()%></td>
+			    <td><%=eje.getTitulo()%></td>
+			    <td><%=eje.getAutores()%></td>
+                            <td><%=formato.format(eje.getPublicacion()) %></td>
 			    <td width="68">
-				<a class="editar" href="editar.jsp?id=<%=cat.getIdcategoria()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
-				<a class="elimin" href="eliminar.jsp?id=<%=cat.getIdcategoria()%>" title="Eliminar"><i class="material-icons">delete</i></a>
+				<a class="editar" href="editar.jsp?id=<%=eje.getIdejemplar()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
+				<a class="elimin" href="eliminar.jsp?id=<%=eje.getIdejemplar()%>" title="Eliminar"><i class="material-icons">delete</i></a>
 			    </td>
 			</tr>
 			<% }%>

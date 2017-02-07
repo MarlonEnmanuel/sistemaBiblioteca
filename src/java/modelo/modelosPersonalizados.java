@@ -5,7 +5,8 @@
  */
 package modelo;
 
-import entidad.eCategoria;
+import entidad.eCopia;
+import entidad.eEjemplar;
 import entidad.eUsuario;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -42,5 +43,40 @@ public class modelosPersonalizados {
         }
     }
 
+    static public eEjemplar retornaEjemplarxCodigo(String codigo){
+        try {
+            Query query = em.createQuery("SELECT e FROM eEjemplar e WHERE e.codigo = :codigo");
+            System.out.println("fin");
+            query.setParameter("codigo", codigo);
+
+            eEjemplar eEjemplar = (eEjemplar) query.getSingleResult();
+            return eEjemplar;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    static public eCopia retornaCopiaxCodigo(String codigo){
+        try {
+            Query query = em.createQuery("SELECT e FROM eCopia e WHERE e.codigo = :codigo");
+            query.setParameter("codigo", codigo);
+            eCopia eCopia = (eCopia) query.getSingleResult();
+            return eCopia;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    static public List<eCopia> listaCopiaxCOdigo(String idejemplar){
+        try {
+            Query query = em.createQuery("SELECT e FROM eCopia e WHERE e.idejemplar = :idejemplar");
+            query.setParameter("idejemplar", idejemplar);
+            
+            List<eCopia> ls=query.getResultList();
+            return ls;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 }

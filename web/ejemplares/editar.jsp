@@ -1,3 +1,4 @@
+<%@page import="modelo.eEjemplarJpaController"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entidad.eEjemplar"%>
 <%@page import="entidad.eEjemplar"%>
@@ -8,10 +9,11 @@
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_id = request.getParameter("id") != null ? request.getParameter("id") : "0";
+    int id=Integer.parseInt(request.getParameter("id"));
+    modelo.eEjemplarJpaController ejc=new eEjemplarJpaController();
     modelo.eCategoriaJpaController mm = new eCategoriaJpaController();
     List<eCategoria> ls = mm.findeCategoriaEntities();
-    
-    eEjemplar Ejemplar = new eEjemplar();
+    eEjemplar Ejemplar = ejc.findeEjemplar(id);
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
