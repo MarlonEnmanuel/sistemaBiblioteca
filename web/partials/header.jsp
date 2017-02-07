@@ -1,7 +1,8 @@
 <%@page import="entidad.eUsuario"%>
 <%
     HttpSession Sesion = request.getSession();
-    eUsuario Usuario = (eUsuario) Sesion.getAttribute("usuario");
+    String nombre = Sesion.getAttribute("Usuario")!=null ? ((eUsuario)Sesion.getAttribute("Usuario")).getUsuarioUser() : "Invitado" ;
+    String p_title = request.getParameter("title") != null ? request.getParameter("title") : "Principal";
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -37,7 +38,7 @@
 <header>
     <nav class="blue">
 	<div class="nav-wrapper container">
-	    <a href="#" class="brand-logo">Logo</a>
+	    <a href="#" class="brand-logo"><%= p_title %></a>
 	    <ul id="nav-mobile" class="right hide-on-med-and-down">
 		<li><a href="collapsible.html">Mi Perfil</a></li>
 	    </ul>
@@ -45,14 +46,14 @@
 	<ul id="slide-out" class="side-nav fixed blue-grey darken-2">
 	    <li>
 		<div class="nav-user">
-		    <img src="/sistemaBiblioteca/vendor/img/bg02.jpg">
+		    <img src="/sistemaBiblioteca/vendor/img/bg01.jpg">
 		    <div class="nav-user-data white-text">
-			<p style="margin: 0">Sistema Biblioteca</p>
+			<p style="margin: 8px 0; font-size: 22px; font-weight: 300;">Sistema Biblioteca</p>
 		    </div>
 		</div>
 	    </li>
 	    <li>
-		<a href="#!"><i class="material-icons">person_pin</i>nombreu</a>
+		<a href="#!"><i class="material-icons">person_pin</i><%= nombre %></a>
 	    </li>
 	    <li><div class="divider blue-grey darken-1"></div></li>
 	    <li class="no-padding">
