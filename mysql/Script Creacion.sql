@@ -19,7 +19,7 @@ USE `biblioteca2017` ;
 -- Table `biblioteca2017`.`persona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `biblioteca2017`.`persona` (
-  `idpersona` INT NOT NULL,
+  `idpersona` INT NOT NULL AUTO_INCREMENT,
   `fechareg` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `codigo` VARCHAR(45) NOT NULL,
   `nombres` VARCHAR(45) NOT NULL,
@@ -107,7 +107,7 @@ ENGINE = InnoDB;
 -- Table `biblioteca2017`.`copia`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `biblioteca2017`.`copia` (
-  `idcopia` INT NOT NULL,
+  `idcopia` INT NOT NULL AUTO_INCREMENT,
   `fechareg` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `codigo` VARCHAR(45) NOT NULL,
   `estado` TINYINT(1) NOT NULL DEFAULT 1,
@@ -150,7 +150,7 @@ ENGINE = InnoDB;
 -- Table `biblioteca2017`.`prestamo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `biblioteca2017`.`prestamo` (
-  `idprestamo` INT NOT NULL,
+  `idprestamo` INT NOT NULL AUTO_INCREMENT,
   `fechareg` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fechaini` DATETIME NOT NULL,
   `fechafin` DATETIME NOT NULL,

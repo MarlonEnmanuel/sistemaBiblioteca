@@ -91,6 +91,7 @@
 		    </li>
 		</ul>
 	    </li>
+	    <li><div class="divider blue-grey darken-1"></div></li>
 	    <li><a class="waves-effect" href="#!">Cerrar Sesión</a></li>
 	</ul>
 	<a href="#" data-activates="slide-out" class="button-collapse">
