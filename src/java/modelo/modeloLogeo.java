@@ -16,24 +16,28 @@ import javax.persistence.Query;
  * @author MiguelSc
  */
 public class modeloLogeo {
+
     private static EntityManagerFactory emf;
     private static EntityManager em;
 
     public modeloLogeo() {
-        emf = Persistence.createEntityManagerFactory("sistemaBiblioteca2017"); 
-        em = emf.createEntityManager(); 
+        emf = Persistence.createEntityManagerFactory("sistemaBiblioteca2017");
+        em = emf.createEntityManager();
     }
 
-    
-    public eUsuario retornaUsuario(String user, String pass){
-        System.out.println(user+","+pass);
-        Query query= em.createQuery("SELECT e FROM eUsuario e WHERE e.pass = :pass and e.user= :user"); 
-        System.out.println("fin");
-        query.setParameter("user", user).setParameter("pass", pass);
-        
-        eUsuario eusuario = (eUsuario)query.getSingleResult(); 
-        
-        return eusuario;
-    }   
-    
+    public eUsuario retornaUsuario(String user, String pass) {
+        try {
+            System.out.println(user + "," + pass);
+            Query query = em.createQuery("SELECT e FROM eUsuario e WHERE e.pass = :pass and e.user= :user");
+            System.out.println("fin");
+            query.setParameter("user", user).setParameter("pass", pass);
+
+            eUsuario eusuario = (eUsuario) query.getSingleResult();
+
+            return eusuario;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

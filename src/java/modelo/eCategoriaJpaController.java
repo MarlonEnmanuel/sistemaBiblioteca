@@ -39,7 +39,6 @@ public class eCategoriaJpaController implements Serializable {
         if (eCategoria.getEEjemplarList() == null) {
             eCategoria.setEEjemplarList(new ArrayList<eEjemplar>());
         }
-        EntityManager em = null;
         try {
             em.getTransaction().begin();
             List<eEjemplar> attachedEEjemplarList = new ArrayList<eEjemplar>();
@@ -67,7 +66,6 @@ public class eCategoriaJpaController implements Serializable {
     }
 
     public void edit(eCategoria eCategoria) throws IllegalOrphanException, NonexistentEntityException, Exception {
-        EntityManager em = null;
         try {
             em.getTransaction().begin();
             eCategoria persistenteCategoria = em.find(eCategoria.class, eCategoria.getIdcategoria());
@@ -122,7 +120,6 @@ public class eCategoriaJpaController implements Serializable {
     }
 
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
-        EntityManager em = null;
         try {
             em.getTransaction().begin();
             eCategoria eCategoria;
