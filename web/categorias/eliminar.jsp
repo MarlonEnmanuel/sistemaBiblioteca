@@ -1,6 +1,11 @@
+<%@page import="entidad.eCategoria"%>
+<%@page import="modelo.eCategoriaJpaController"%>
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_id = request.getParameter("id") != null ? request.getParameter("msj") : "";
+    int id = Integer.parseInt(request.getParameter("id"));
+    modelo.eCategoriaJpaController cjc = new eCategoriaJpaController();
+    eCategoria Categoria = cjc.findeCategoria(id);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +26,7 @@
 		<br>
 		<form action="../servlets/categoria" method="POST">
 		    <input type="hidden" name="accion" value="eliminar">
-		    <input type="hidden" name="idcategoria" value="<%= p_id %>">
+		    <input type="hidden" name="idcategoria" value="<%=Categoria.getIdcategoria()%>">
 		    
 		    <a class="waves-effect waves-light btn left" onclick="history.back()">Cancelar</A>
 		    <button class="waves-effect waves-light btn right">Eliminar</button>

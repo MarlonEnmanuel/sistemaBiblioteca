@@ -5,13 +5,20 @@
  */
 package servlets;
 
+import entidad.eCategoria;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.eCategoriaJpaController;
+import modelo.exceptions.IllegalOrphanException;
+import modelo.exceptions.NonexistentEntityException;
 
 /**
  *
@@ -50,7 +57,13 @@ public class categoria extends HttpServlet {
 	*/
 	PrintWriter out = response.getWriter();
 	try {
-	    out.println("Funcionando");
+            Date date=new Date();
+	    eCategoria cat=new eCategoria(null, date, request.getParameter("nombre"), request.getParameter("descrip"), request.getParameter("datos"));
+            System.out.println(cat);
+            eCategoriaJpaController cjc=new eCategoriaJpaController();
+            if (cjc.create(cat)) {
+                response.sendRedirect("/sistemaBiblioteca/categorias");
+            }
 	} finally {
 	    out.close();
 	}
@@ -63,7 +76,22 @@ public class categoria extends HttpServlet {
 	*/
 	PrintWriter out = response.getWriter();
 	try {
-	    
+            eCategoria cat=new eCategoria();
+            cat.setIdcategoria(Integer.parseInt(request.getParameter("idcategoria")));
+            cat.setNombre(request.getParameter("nombre"));
+            cat.setDatos(request.getParameter("datos"));
+            cat.setDescripcion(request.getParameter("descrip"));
+            eCategoriaJpaController cjc=new eCategoriaJpaController();
+            try {
+                if(cjc.actualiza(cat)){
+                    response.sendRedirect("/sistemaBiblioteca/categorias");
+                }
+                
+            } catch (NonexistentEntityException ex) {
+                Logger.getLogger(categoria.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(categoria.class.getName()).log(Level.SEVERE, null, ex);
+            }
 	} finally {
 	    out.close();
 	}
@@ -76,7 +104,18 @@ public class categoria extends HttpServlet {
 	*/
 	PrintWriter out = response.getWriter();
 	try {
-	    
+            eCategoria cat=new eCategoria();
+            cat.setIdcategoria(Integer.parseInt(request.getParameter("idcategoria")));
+	    eCategoriaJpaController cjc=new eCategoriaJpaController();
+            try {
+                if(cjc.destroy(cat)){
+                    response.sendRedirect("/sistemaBiblioteca/categorias");
+                }
+            } catch (IllegalOrphanException ex) {
+                Logger.getLogger(categoria.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NonexistentEntityException ex) {
+                Logger.getLogger(categoria.class.getName()).log(Level.SEVERE, null, ex);
+            }
 	} finally {
 	    out.close();
 	}

@@ -46,8 +46,8 @@
                             <td><%=cat.getDescripcion()%></td>
                             <td><%=cat.getDatos()%></td>
                             <td width="68">
-                                <a class="editar" href="editar.jsp?id=" title="Editar"><i class="material-icons">mode_edit</i></a>
-                                <a class="elimin" href="eliminar.jsp?id=" title="Eliminar"><i class="material-icons">delete</i></a>
+                                <a class="editar" href="editar.jsp?id=<%=cat.getIdcategoria()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
+                                <a class="elimin" href="eliminar.jsp?id=<%=cat.getIdcategoria()%>" title="Eliminar"><i class="material-icons">delete</i></a>
                             </td>
                         </tr>
                         <% }%>

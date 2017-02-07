@@ -6,7 +6,8 @@
 package servlets;
 
 import entidad.eCategoria;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import modelo.eCategoriaJpaController;
 
 /**
@@ -16,7 +17,9 @@ import modelo.eCategoriaJpaController;
 public class main {
     public static void main(String[] args) {
         modelo.eCategoriaJpaController mm=new eCategoriaJpaController();
-        List<eCategoria> ls=mm.findeCategoriaEntities();
-        System.out.println(ls.size());
+        Date date = new Date();
+        String fecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+        eCategoria eCategoria1=new eCategoria(null,date, "prueba", "prueba", "prueba");
+        mm.create(eCategoria1);
     }
 }
