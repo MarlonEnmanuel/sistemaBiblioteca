@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.modeloLogeo;
+import modelo.modelosPersonalizados;
 
 /**
  *
@@ -41,11 +41,12 @@ public class auth extends HttpServlet {
         * pass (Contraseña)
         */
         response.setContentType("text/html;charset=UTF-8");
+        modelosPersonalizados ml=new modelosPersonalizados();
         try {
             String usu=request.getParameter("user");
             String pass=request.getParameter("pass");
             System.out.println(usu+"-"+pass);
-            modeloLogeo ml=new modeloLogeo();
+            
             eUsuario User=ml.retornaUsuario(usu, pass);
             
             if(User!=null){

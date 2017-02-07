@@ -1,7 +1,7 @@
 <%@page import="entidad.eUsuario"%>
 <%
     HttpSession Sesion = request.getSession();
-    String nombre = Sesion.getAttribute("Usuario")!=null ? ((eUsuario)Sesion.getAttribute("Usuario")).getUsuarioUser() : "Invitado" ;
+    String nombre = Sesion.getAttribute("Usuario")!=null ? ((eUsuario)Sesion.getAttribute("Usuario")).getUser(): "Invitado" ;
     String p_title = request.getParameter("title") != null ? request.getParameter("title") : "Principal";
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

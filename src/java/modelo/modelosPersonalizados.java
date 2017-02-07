@@ -5,7 +5,9 @@
  */
 package modelo;
 
+import entidad.eCategoria;
 import entidad.eUsuario;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,12 +17,12 @@ import javax.persistence.Query;
  *
  * @author MiguelSc
  */
-public class modeloLogeo {
+public class modelosPersonalizados {
 
     private static EntityManagerFactory emf;
     private static EntityManager em;
 
-    public modeloLogeo() {
+    public modelosPersonalizados() {
         emf = Persistence.createEntityManagerFactory("sistemaBiblioteca2017");
         em = emf.createEntityManager();
     }
@@ -39,5 +41,6 @@ public class modeloLogeo {
             return null;
         }
     }
+
 
 }
