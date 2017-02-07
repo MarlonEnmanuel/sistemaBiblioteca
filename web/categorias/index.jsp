@@ -21,6 +21,10 @@
         </jsp:include>
         <main>
             <div class="container">
+		<div class="right-align">
+		    <a href="agregar.jsp" class="waves-effect waves-light btn">Nueva Categoría</a>
+		</div>
+		<br>
                 <table class="bordered striped">
                     <thead>
                         <tr>
@@ -32,9 +36,9 @@
                     </thead>
                     <tbody>
                         <%
-                            for (Iterator it = ls.iterator(); it.hasNext();) {
-                                int i = 0;
-                                eCategoria cat = (eCategoria) it.next();
+			    for (Iterator it = ls.iterator(); it.hasNext();) {
+				int i = 0;
+				eCategoria cat = (eCategoria) it.next();
                         %>
                         <tr>
                             <td><%=cat.getIdcategoria()%></td>
@@ -54,7 +58,7 @@
         </main>
         <%@include file="../partials/footer.jsp" %>
         <script>
-            Materialize.toast('<%= p_msj%>');
+	    Materialize.toast('<%= p_msj%>');
         </script>
     </body>
 </html>
