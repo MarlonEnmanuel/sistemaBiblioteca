@@ -65,11 +65,11 @@
 			</a>
 			<div class="collapsible-body blue-grey darken-1">
 			    <ul>
-				<li><a href="#!">Categorías</a></li>
-				<li><a href="#!">Temas</a></li>
-				<li><a href="#!">Ejemplares</a></li>
-				<li><a href="#!">Copias</a></li>
-				<li><a href="#!">Personas</a></li>
+				<li><a href="/sistemaBiblioteca/categorias">Categorías</a></li>
+				<li><a href="/sistemaBiblioteca/temas">Temas</a></li>
+				<li><a href="/sistemaBiblioteca/ejemplares">Ejemplares</a></li>
+				<li><a href="/sistemaBiblioteca/copias">Copias</a></li>
+				<li><a href="/sistemaBiblioteca/personas">Personas</a></li>
 			    </ul>
 			</div>
 		    </li>
