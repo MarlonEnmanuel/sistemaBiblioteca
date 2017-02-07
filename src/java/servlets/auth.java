@@ -6,7 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,12 +38,12 @@ public class auth extends HttpServlet {
         * pass (Contraseña)
         */
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<script>history.back()</script>");
+            String usu=request.getParameter("user");
+            String pass=request.getParameter("pass");
+            
         } finally {
-            out.close();
+            
         }
     }
 

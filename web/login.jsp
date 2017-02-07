@@ -27,12 +27,12 @@
                         </div>
                         <div class="col s12 input-field">
                             <i class="material-icons prefix">account_circle</i>
-                            <input id="user" type="text" tabindex="1" autofocus required value="<%= p_user %>">
+                            <input id="user" name="user" type="text" tabindex="1" autofocus required value="<%= p_user %>">
                             <label for="user">Usuario</label>
                         </div>
                         <div class="col s12 input-field">
                             <i class="material-icons prefix">vpn_key</i>
-                            <input id="pass" type="password" tabindex="2" required>
+                            <input id="pass" name="pass" type="password" tabindex="2" required>
                             <label for="pass">Constraseña</label>
                         </div>
                         <div class="col s12 input-field center">

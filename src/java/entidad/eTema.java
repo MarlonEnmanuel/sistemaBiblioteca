@@ -1,12 +1,25 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package entidad;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -17,78 +30,89 @@ import javax.persistence.*;
 //@XmlRootElement
 //@NamedQueries({
 //    @NamedQuery(name = "eTema.findAll", query = "SELECT e FROM eTema e"),
-//    @NamedQuery(name = "eTema.findByTemaId", query = "SELECT e FROM eTema e WHERE e.temaId = :temaId"),
-//    @NamedQuery(name = "eTema.findByTemaFecreg", query = "SELECT e FROM eTema e WHERE e.temaFecreg = :temaFecreg"),
-//    @NamedQuery(name = "eTema.findByTemaNombre", query = "SELECT e FROM eTema e WHERE e.temaNombre = :temaNombre")})
+//    @NamedQuery(name = "eTema.findByIdtema", query = "SELECT e FROM eTema e WHERE e.idtema = :idtema"),
+//    @NamedQuery(name = "eTema.findByFechareg", query = "SELECT e FROM eTema e WHERE e.fechareg = :fechareg"),
+//    @NamedQuery(name = "eTema.findByNombre", query = "SELECT e FROM eTema e WHERE e.nombre = :nombre")})
 public class eTema implements Serializable {
 //    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "tema_id")
-    private Integer temaId;
+    @Column(name = "idtema")
+    private Integer idtema;
     @Basic(optional = false)
-    @Column(name = "tema_fecreg")
-    @Temporal(TemporalType.DATE)
-    private Date temaFecreg;
+    @Column(name = "fechareg")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechareg;
     @Basic(optional = false)
-    @Column(name = "tema_nombre")
-    private String temaNombre;
+    @Column(name = "nombre")
+    private String nombre;
     @Basic(optional = false)
     @Lob
-    @Column(name = "tema_descripcion")
-    private String temaDescripcion;
+    @Column(name = "descripcion")
+    private String descripcion;
+    @ManyToMany(mappedBy = "eTemaList")
+    private List<eEjemplar> eEjemplarList;
 
     public eTema() {
     }
 
-    public eTema(Integer temaId) {
-        this.temaId = temaId;
+    public eTema(Integer idtema) {
+        this.idtema = idtema;
     }
 
-    public eTema(Integer temaId, Date temaFecreg, String temaNombre, String temaDescripcion) {
-        this.temaId = temaId;
-        this.temaFecreg = temaFecreg;
-        this.temaNombre = temaNombre;
-        this.temaDescripcion = temaDescripcion;
+    public eTema(Integer idtema, Date fechareg, String nombre, String descripcion) {
+        this.idtema = idtema;
+        this.fechareg = fechareg;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
-    public Integer getTemaId() {
-        return temaId;
+    public Integer getIdtema() {
+        return idtema;
     }
 
-    public void setTemaId(Integer temaId) {
-        this.temaId = temaId;
+    public void setIdtema(Integer idtema) {
+        this.idtema = idtema;
     }
 
-    public Date getTemaFecreg() {
-        return temaFecreg;
+    public Date getFechareg() {
+        return fechareg;
     }
 
-    public void setTemaFecreg(Date temaFecreg) {
-        this.temaFecreg = temaFecreg;
+    public void setFechareg(Date fechareg) {
+        this.fechareg = fechareg;
     }
 
-    public String getTemaNombre() {
-        return temaNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTemaNombre(String temaNombre) {
-        this.temaNombre = temaNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getTemaDescripcion() {
-        return temaDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setTemaDescripcion(String temaDescripcion) {
-        this.temaDescripcion = temaDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @XmlTransient
+    public List<eEjemplar> getEEjemplarList() {
+        return eEjemplarList;
+    }
+
+    public void setEEjemplarList(List<eEjemplar> eEjemplarList) {
+        this.eEjemplarList = eEjemplarList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (temaId != null ? temaId.hashCode() : 0);
+        hash += (idtema != null ? idtema.hashCode() : 0);
         return hash;
     }
 
@@ -99,7 +123,7 @@ public class eTema implements Serializable {
             return false;
         }
         eTema other = (eTema) object;
-        if ((this.temaId == null && other.temaId != null) || (this.temaId != null && !this.temaId.equals(other.temaId))) {
+        if ((this.idtema == null && other.idtema != null) || (this.idtema != null && !this.idtema.equals(other.idtema))) {
             return false;
         }
         return true;
@@ -107,7 +131,7 @@ public class eTema implements Serializable {
 
     @Override
     public String toString() {
-        return "entidad.eTema[ temaId=" + temaId + " ]";
+        return "entidad.eTema[ idtema=" + idtema + " ]";
     }
     
 }

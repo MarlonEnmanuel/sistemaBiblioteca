@@ -1,12 +1,23 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package entidad;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -17,119 +28,115 @@ import javax.persistence.*;
 //@XmlRootElement
 //@NamedQueries({
 //    @NamedQuery(name = "ePrestamo.findAll", query = "SELECT e FROM ePrestamo e"),
-//    @NamedQuery(name = "ePrestamo.findByPrestamoId", query = "SELECT e FROM ePrestamo e WHERE e.prestamoId = :prestamoId"),
-//    @NamedQuery(name = "ePrestamo.findByPrestamoFecreg", query = "SELECT e FROM ePrestamo e WHERE e.prestamoFecreg = :prestamoFecreg"),
-//    @NamedQuery(name = "ePrestamo.findByPrestamoFecini", query = "SELECT e FROM ePrestamo e WHERE e.prestamoFecini = :prestamoFecini"),
-//    @NamedQuery(name = "ePrestamo.findByPrestamoFecfin", query = "SELECT e FROM ePrestamo e WHERE e.prestamoFecfin = :prestamoFecfin"),
-//    @NamedQuery(name = "ePrestamo.findByPrestamoDevuelto", query = "SELECT e FROM ePrestamo e WHERE e.prestamoDevuelto = :prestamoDevuelto"),
-//    @NamedQuery(name = "ePrestamo.findByCopiaId", query = "SELECT e FROM ePrestamo e WHERE e.copiaId = :copiaId"),
-//    @NamedQuery(name = "ePrestamo.findByPersonaId", query = "SELECT e FROM ePrestamo e WHERE e.personaId = :personaId")})
+//    @NamedQuery(name = "ePrestamo.findByIdprestamo", query = "SELECT e FROM ePrestamo e WHERE e.idprestamo = :idprestamo"),
+//    @NamedQuery(name = "ePrestamo.findByFechareg", query = "SELECT e FROM ePrestamo e WHERE e.fechareg = :fechareg"),
+//    @NamedQuery(name = "ePrestamo.findByFechaini", query = "SELECT e FROM ePrestamo e WHERE e.fechaini = :fechaini"),
+//    @NamedQuery(name = "ePrestamo.findByFechafin", query = "SELECT e FROM ePrestamo e WHERE e.fechafin = :fechafin"),
+//    @NamedQuery(name = "ePrestamo.findByDevuelto", query = "SELECT e FROM ePrestamo e WHERE e.devuelto = :devuelto")})
 public class ePrestamo implements Serializable {
 //    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "prestamo_id")
-    private Integer prestamoId;
+    @Column(name = "idprestamo")
+    private Integer idprestamo;
     @Basic(optional = false)
-    @Column(name = "prestamo_fecreg")
-    @Temporal(TemporalType.DATE)
-    private Date prestamoFecreg;
+    @Column(name = "fechareg")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechareg;
     @Basic(optional = false)
-    @Column(name = "prestamo_fecini")
-    @Temporal(TemporalType.DATE)
-    private Date prestamoFecini;
+    @Column(name = "fechaini")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaini;
     @Basic(optional = false)
-    @Column(name = "prestamo_fecfin")
-    @Temporal(TemporalType.DATE)
-    private Date prestamoFecfin;
+    @Column(name = "fechafin")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechafin;
     @Basic(optional = false)
-    @Column(name = "prestamo_devuelto")
-    private boolean prestamoDevuelto;
-    @Basic(optional = false)
-    @Column(name = "copia_id")
-    private int copiaId;
-    @Basic(optional = false)
-    @Column(name = "persona_id")
-    private int personaId;
+    @Column(name = "devuelto")
+    private boolean devuelto;
+    @JoinColumn(name = "idpersona", referencedColumnName = "idpersona")
+    @ManyToOne(optional = false)
+    private ePersona idpersona;
+    @JoinColumn(name = "idcopia", referencedColumnName = "idcopia")
+    @ManyToOne(optional = false)
+    private eCopia idcopia;
 
     public ePrestamo() {
     }
 
-    public ePrestamo(Integer prestamoId) {
-        this.prestamoId = prestamoId;
+    public ePrestamo(Integer idprestamo) {
+        this.idprestamo = idprestamo;
     }
 
-    public ePrestamo(Integer prestamoId, Date prestamoFecreg, Date prestamoFecini, Date prestamoFecfin, boolean prestamoDevuelto, int copiaId, int personaId) {
-        this.prestamoId = prestamoId;
-        this.prestamoFecreg = prestamoFecreg;
-        this.prestamoFecini = prestamoFecini;
-        this.prestamoFecfin = prestamoFecfin;
-        this.prestamoDevuelto = prestamoDevuelto;
-        this.copiaId = copiaId;
-        this.personaId = personaId;
+    public ePrestamo(Integer idprestamo, Date fechareg, Date fechaini, Date fechafin, boolean devuelto) {
+        this.idprestamo = idprestamo;
+        this.fechareg = fechareg;
+        this.fechaini = fechaini;
+        this.fechafin = fechafin;
+        this.devuelto = devuelto;
     }
 
-    public Integer getPrestamoId() {
-        return prestamoId;
+    public Integer getIdprestamo() {
+        return idprestamo;
     }
 
-    public void setPrestamoId(Integer prestamoId) {
-        this.prestamoId = prestamoId;
+    public void setIdprestamo(Integer idprestamo) {
+        this.idprestamo = idprestamo;
     }
 
-    public Date getPrestamoFecreg() {
-        return prestamoFecreg;
+    public Date getFechareg() {
+        return fechareg;
     }
 
-    public void setPrestamoFecreg(Date prestamoFecreg) {
-        this.prestamoFecreg = prestamoFecreg;
+    public void setFechareg(Date fechareg) {
+        this.fechareg = fechareg;
     }
 
-    public Date getPrestamoFecini() {
-        return prestamoFecini;
+    public Date getFechaini() {
+        return fechaini;
     }
 
-    public void setPrestamoFecini(Date prestamoFecini) {
-        this.prestamoFecini = prestamoFecini;
+    public void setFechaini(Date fechaini) {
+        this.fechaini = fechaini;
     }
 
-    public Date getPrestamoFecfin() {
-        return prestamoFecfin;
+    public Date getFechafin() {
+        return fechafin;
     }
 
-    public void setPrestamoFecfin(Date prestamoFecfin) {
-        this.prestamoFecfin = prestamoFecfin;
+    public void setFechafin(Date fechafin) {
+        this.fechafin = fechafin;
     }
 
-    public boolean getPrestamoDevuelto() {
-        return prestamoDevuelto;
+    public boolean getDevuelto() {
+        return devuelto;
     }
 
-    public void setPrestamoDevuelto(boolean prestamoDevuelto) {
-        this.prestamoDevuelto = prestamoDevuelto;
+    public void setDevuelto(boolean devuelto) {
+        this.devuelto = devuelto;
     }
 
-    public int getCopiaId() {
-        return copiaId;
+    public ePersona getIdpersona() {
+        return idpersona;
     }
 
-    public void setCopiaId(int copiaId) {
-        this.copiaId = copiaId;
+    public void setIdpersona(ePersona idpersona) {
+        this.idpersona = idpersona;
     }
 
-    public int getPersonaId() {
-        return personaId;
+    public eCopia getIdcopia() {
+        return idcopia;
     }
 
-    public void setPersonaId(int personaId) {
-        this.personaId = personaId;
+    public void setIdcopia(eCopia idcopia) {
+        this.idcopia = idcopia;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (prestamoId != null ? prestamoId.hashCode() : 0);
+        hash += (idprestamo != null ? idprestamo.hashCode() : 0);
         return hash;
     }
 
@@ -140,7 +147,7 @@ public class ePrestamo implements Serializable {
             return false;
         }
         ePrestamo other = (ePrestamo) object;
-        if ((this.prestamoId == null && other.prestamoId != null) || (this.prestamoId != null && !this.prestamoId.equals(other.prestamoId))) {
+        if ((this.idprestamo == null && other.idprestamo != null) || (this.idprestamo != null && !this.idprestamo.equals(other.idprestamo))) {
             return false;
         }
         return true;
@@ -148,7 +155,7 @@ public class ePrestamo implements Serializable {
 
     @Override
     public String toString() {
-        return "entidad.ePrestamo[ prestamoId=" + prestamoId + " ]";
+        return "entidad.ePrestamo[ idprestamo=" + idprestamo + " ]";
     }
     
 }
