@@ -1,11 +1,12 @@
-<%@page import="modelo.eCategoriaJpaController"%>
-<%@page import="entidad.eCategoria"%>
+<%@page import="entidad.eTema"%>
+<%@page import="modelo.eTemaJpaController"%>
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_id = request.getParameter("id") != null ? request.getParameter("msj") : "";
     int id = Integer.parseInt(request.getParameter("id"));
-    modelo.eCategoriaJpaController cjc = new eCategoriaJpaController();
-    eCategoria Categoria = cjc.findeCategoria(id);
+    modelo.eTemaJpaController tjc=new eTemaJpaController();
+    eTema tema=tjc.findeTema(id);
+
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,14 +24,14 @@
 
                 <form action="../servlets/tema" method="POST">
                     <input type="hidden" name="accion" value="actualizar">
-                    <input type="hidden" name="idtema" value="<%= Categoria.getIdcategoria()%>">
+                    <input type="hidden" name="idtema" value="<%= tema.getIdtema()%>">
 
                     <div class="input-field">
-                        <input type="text" id="nombre" name="nombre" class="validate" maxlength="45" tabindex="1" autofocus value="<%= Categoria.getNombre()%>">
+                        <input type="text" id="nombre" name="nombre" class="validate" maxlength="45" tabindex="1" autofocus value="<%= tema.getNombre()%>">
                         <label for="nombre">Nombre del Tema</label>
                     </div>
                     <div class="input-field">
-                        <input type="text" id="descrip" name="descrip" class="validate" tabindex="2" value="<%= Categoria.getDescripcion()%>">
+                        <input type="text" id="descrip" name="descrip" class="validate" tabindex="2" value="<%= tema.getDescripcion()%>">
                         <label for="descrip">Descripción</label>
                     </div>
 

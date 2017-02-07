@@ -1,12 +1,12 @@
-<%@page import="modelo.eCategoriaJpaController"%>
+<%@page import="entidad.eTema"%>
+<%@page import="modelo.eTemaJpaController"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="entidad.eCategoria"%>
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_user = request.getParameter("user") != null ? request.getParameter("user") : "";
-    modelo.eCategoriaJpaController mm = new eCategoriaJpaController();
-    List<eCategoria> ls = mm.findeCategoriaEntities();
+    modelo.eTemaJpaController tjc = new eTemaJpaController();
+    List<eTema> ls= tjc.findeTemaEntities();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -38,15 +38,15 @@
                         <%
 			    for (Iterator it = ls.iterator(); it.hasNext();) {
 				int i = 0;
-				eCategoria cat = (eCategoria) it.next();
+				eTema tema = (eTema) it.next();
                         %>
                         <tr>
-                            <td><%=cat.getIdcategoria()%></td>
-                            <td><%=cat.getNombre()%></td>
-                            <td><%=cat.getDescripcion()%></td>
+                            <td><%=tema.getIdtema()%></td>
+                            <td><%=tema.getNombre()%></td>
+                            <td><%=tema.getDescripcion()%></td>
                             <td width="68">
-                                <a class="editar" href="editar.jsp?id=<%=cat.getIdcategoria()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
-                                <a class="elimin" href="eliminar.jsp?id=<%=cat.getIdcategoria()%>" title="Eliminar"><i class="material-icons">delete</i></a>
+                                <a class="editar" href="editar.jsp?id=<%=tema.getIdtema()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
+                                <a class="elimin" href="eliminar.jsp?id=<%=tema.getIdtema()%>" title="Eliminar"><i class="material-icons">delete</i></a>
                             </td>
                         </tr>
                         <% }%>

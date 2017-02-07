@@ -1,6 +1,11 @@
+<%@page import="modelo.eTemaJpaController"%>
+<%@page import="entidad.eTema"%>
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_id = request.getParameter("id") != null ? request.getParameter("msj") : "";
+    int id = Integer.parseInt(request.getParameter("id"));
+    modelo.eTemaJpaController tjc=new eTemaJpaController();
+    eTema tema=tjc.findeTema(id);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +26,7 @@
 		<br>
 		<form action="../servlets/tema" method="POST">
 		    <input type="hidden" name="accion" value="eliminar">
-		    <input type="hidden" name="idcategoria" value="<%= p_id %>">
+		    <input type="hidden" name="idtema" value="<%=tema.getIdtema() %>">
 		    
 		    <a class="waves-effect waves-light btn left" onclick="history.back()">Cancelar</A>
 		    <button class="waves-effect waves-light btn right">Eliminar</button>
