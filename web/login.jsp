@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <%@include file="partials/head.html" %>
+        <%@include file="partials/headauth.html" %>
         <title>Login</title>
         <style>
             .login-form{
