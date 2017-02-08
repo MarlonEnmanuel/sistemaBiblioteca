@@ -76,6 +76,16 @@ public class eUsuario implements Serializable {
         this.tipo = tipo;
         this.estado = estado;
     }
+    
+    public eUsuario(Integer idusuario, Date fechareg, String user, String pass, String tipo, boolean estado,ePersona idpersona) {
+        this.idusuario = idusuario;
+        this.fechareg = fechareg;
+        this.user = user;
+        this.pass = pass;
+        this.tipo = tipo;
+        this.estado = estado;
+        this.idpersona=idpersona;
+    }
 
     public Integer getIdusuario() {
         return idusuario;

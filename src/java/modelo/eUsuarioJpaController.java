@@ -32,81 +32,47 @@ public class eUsuarioJpaController implements Serializable {
         em = emf.createEntityManager();
     }
 
-    public void create(eUsuario eUsuario) {
+    public boolean create(eUsuario eUsuario) {
         try {
             em.getTransaction().begin();
-            ePersona idpersona = eUsuario.getIdpersona();
-            if (idpersona != null) {
-                idpersona = em.getReference(idpersona.getClass(), idpersona.getIdpersona());
-                eUsuario.setIdpersona(idpersona);
-            }
             em.persist(eUsuario);
-            if (idpersona != null) {
-                idpersona.getEUsuarioList().add(eUsuario);
-                idpersona = em.merge(idpersona);
-            }
             em.getTransaction().commit();
-        } finally {
+            return true;
+        }catch(Exception e){
+            return false;
+        }finally {
             if (em != null) {
                 em.close();
             }
         }
     }
 
-    public void edit(eUsuario eUsuario) throws NonexistentEntityException, Exception {
+    public boolean actualiza(eUsuario eUsuario) throws NonexistentEntityException, Exception{
         try {
+            eUsuario persistenteUsuario=em.find(eUsuario.class, eUsuario.getIdusuario());
             em.getTransaction().begin();
-            eUsuario persistenteUsuario = em.find(eUsuario.class, eUsuario.getIdusuario());
-            ePersona idpersonaOld = persistenteUsuario.getIdpersona();
-            ePersona idpersonaNew = eUsuario.getIdpersona();
-            if (idpersonaNew != null) {
-                idpersonaNew = em.getReference(idpersonaNew.getClass(), idpersonaNew.getIdpersona());
-                eUsuario.setIdpersona(idpersonaNew);
-            }
-            eUsuario = em.merge(eUsuario);
-            if (idpersonaOld != null && !idpersonaOld.equals(idpersonaNew)) {
-                idpersonaOld.getEUsuarioList().remove(eUsuario);
-                idpersonaOld = em.merge(idpersonaOld);
-            }
-            if (idpersonaNew != null && !idpersonaNew.equals(idpersonaOld)) {
-                idpersonaNew.getEUsuarioList().add(eUsuario);
-                idpersonaNew = em.merge(idpersonaNew);
-            }
+            persistenteUsuario.setEstado(eUsuario.getEstado());
+            persistenteUsuario.setIdpersona(eUsuario.getIdpersona());
+            persistenteUsuario.setPass(eUsuario.getPass());
+            persistenteUsuario.setTipo(eUsuario.getTipo());
+            persistenteUsuario.setUser(eUsuario.getUser());
             em.getTransaction().commit();
+            return true;
         } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Integer id = eUsuario.getIdusuario();
-                if (findeUsuario(id) == null) {
-                    throw new NonexistentEntityException("The eUsuario with id " + id + " no longer exists.");
-                }
-            }
-            throw ex;
-        } finally {
-            if (em != null) {
-                em.close();
-            }
+            return false;
         }
     }
 
-    public void destroy(Integer id) throws NonexistentEntityException {
+    public boolean destroy(eUsuario eUsuario) throws NonexistentEntityException {
         try {
+            eUsuario persistenteUsuario=em.find(eUsuario.class, eUsuario.getIdusuario());
             em.getTransaction().begin();
-            eUsuario eUsuario;
-            try {
-                eUsuario = em.getReference(eUsuario.class, id);
-                eUsuario.getIdusuario();
-            } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The eUsuario with id " + id + " no longer exists.", enfe);
-            }
-            ePersona idpersona = eUsuario.getIdpersona();
-            if (idpersona != null) {
-                idpersona.getEUsuarioList().remove(eUsuario);
-                idpersona = em.merge(idpersona);
-            }
-            em.remove(eUsuario);
+            em.remove(persistenteUsuario);
             em.getTransaction().commit();
-        } finally {
+            return true;
+        }catch(Exception e){
+            return false;
+        }finally {
             if (em != null) {
                 em.close();
             }

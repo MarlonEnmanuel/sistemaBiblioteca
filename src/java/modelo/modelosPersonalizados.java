@@ -5,11 +5,8 @@
  */
 package modelo;
 
-import entidad.eCopia;
 import entidad.eEjemplar;
 import entidad.eUsuario;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,7 +28,7 @@ public class modelosPersonalizados {
 
     public eUsuario retornaUsuario(String user, String pass) {
         try {
-            Query query = em.createQuery("SELECT e FROM eUsuario e WHERE e.pass = :pass and e.user= :user");
+            Query query = em.createQuery("SELECT e FROM eUsuario e WHERE e.pass = :pass and e.user= :user and e.estado=1");
             query.setParameter("user", user).setParameter("pass", pass);
 
             eUsuario eusuario = (eUsuario) query.getSingleResult();

@@ -73,6 +73,7 @@
 				<li><a href="/sistemaBiblioteca/ejemplares">Ejemplares</a></li>
 				<li><a href="/sistemaBiblioteca/copias">Copias</a></li>
 				<li><a href="/sistemaBiblioteca/personas">Personas</a></li>
+                                <li><a href="/sistemaBiblioteca/usuarios">Usuarios</a></li>
 			    </ul>
 			</div>
 		    </li>
