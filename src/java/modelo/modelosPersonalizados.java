@@ -31,9 +31,7 @@ public class modelosPersonalizados {
 
     public eUsuario retornaUsuario(String user, String pass) {
         try {
-            System.out.println(user + "," + pass);
             Query query = em.createQuery("SELECT e FROM eUsuario e WHERE e.pass = :pass and e.user= :user");
-            System.out.println("fin");
             query.setParameter("user", user).setParameter("pass", pass);
 
             eUsuario eusuario = (eUsuario) query.getSingleResult();
@@ -44,39 +42,15 @@ public class modelosPersonalizados {
         }
     }
 
-    static public eEjemplar retornaEjemplarxCodigo(String codigo){
-        try {
-            Query query = em.createQuery("SELECT e FROM ejemplar e WHERE e.codigo = :codigo");
-            query.setParameter("codigo", codigo);
 
-            eEjemplar eEjemplar = (eEjemplar) query.getSingleResult();
-            return eEjemplar;
+    public eEjemplar retornaEjemplarxCodigo(String codigo){
+        try {
+            Query query=em.createQuery("SELECT e FROM eEjemplar e WHERE e.codigo= :codigo");
+            query.setParameter("codigo", codigo);
+            eEjemplar eje=(eEjemplar) query.getSingleResult();
+            return eje;
         } catch (Exception e) {
             return null;
         }
     }
-    
-    static public eCopia retornaCopiaxCodigo(String codigo){
-        try {
-            Query query = em.createQuery("SELECT e FROM eCopia e WHERE e.codigo = :codigo");
-            query.setParameter("codigo", codigo);
-            eCopia eCopia = (eCopia) query.getSingleResult();
-            return eCopia;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-    
-    static public List<eCopia> listaCopiaxCodigoEjemplar(String codigoejemplar){
-        try {
-            Query query = em.createQuery("SELECT c FROM eCopia c INNER JOIN eEjemplar e ON c.idejemplar=e.idejemplar WHERE e.codigo = :codigoejemplar");
-            query.setParameter("codigoejemplar", codigoejemplar);
-            
-            List<eCopia> ls=query.getResultList();
-            return ls;
-        } catch (Exception e) {
-            return new ArrayList<eCopia>();
-        }
-    }
-
 }

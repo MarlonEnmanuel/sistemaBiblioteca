@@ -4,8 +4,11 @@
  */
 package modelo;
 
+import entidad.eCopia;
+import entidad.eEjemplar;
 import entidad.ePersona;
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -14,9 +17,8 @@ import java.sql.Date;
 public class main {
     
     public static void main(String[] args) {
-        Date i=new Date(2017, 2, 6);
-        ePersona p=new ePersona(null,i , "1010", "prueba","prueba","ing sitemas","ficsa","alumno");
-        modelo.ePersonaJpaController d=new ePersonaJpaController();
-        d.create(p);
+        modelosPersonalizados p=new modelosPersonalizados();
+        eEjemplar eje = p.retornaEjemplarxCodigo("1010");
+        System.out.println(eje.getIdejemplar());
     }
 }

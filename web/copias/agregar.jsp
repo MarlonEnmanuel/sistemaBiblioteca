@@ -19,7 +19,7 @@
 		    <input type="hidden" name="accion" value="insertar">
 
 		    <div class="col s12 input-field">
-			<input type="text" id="codigoejemplar" name="codigoejemplar" class="validate" maxlength="45" tabindex="1" autofocus>
+                        <input type="text" id="codigoejemplar" name="codigoejemplar" class="validate" maxlength="45" tabindex="1" autofocus>
 			<label for="codigoejemplar">Código del Ejemplar</label>
 		    </div>
 

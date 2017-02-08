@@ -1,3 +1,4 @@
+<%@page import="modelo.eCopiaJpaController"%>
 <%@page import="modelo.modelosPersonalizados"%>
 <%@page import="entidad.eCopia"%>
 <%@page import="modelo.eEjemplarJpaController"%>
@@ -9,8 +10,11 @@
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_user = request.getParameter("user") != null ? request.getParameter("user") : "";
     String p_cod = request.getParameter("cod") != null ? request.getParameter("cod") : "";
-    eEjemplar Ejemplar = modelosPersonalizados.retornaEjemplarxCodigo(p_cod);
-    List<eCopia> Copias = modelosPersonalizados.listaCopiaxCodigoEjemplar(p_cod);
+    eCopiaJpaController cjc=new eCopiaJpaController();
+    modelosPersonalizados mp=new modelosPersonalizados();
+    eEjemplar Ejemplar = mp.retornaEjemplarxCodigo(p_cod);
+    List<eCopia> Copias = cjc.findeCopiaEntities();
+    
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,7 +37,7 @@
 		    </div>
 		    <div class="col s12 m6 input-field">
 			<button class="waves-effect waves-light btn">Buscar Copias</button>
-			<a href="agregar.jsp" class="waves-effect waves-light btn right">Nueva Copia</a>
+                        <a href="agregar.jsp" class="waves-effect waves-light btn right">Nueva Copia</a>
 		    </div>
 		</form>
 
@@ -42,7 +46,8 @@
 			<br>
 			<br>
 			<h5 class="center-align">Código de ejemplar no existe</h5>
-		    <% } else { %>
+		    <% } else { 
+                    %>
 			<table class="bordered striped">
 			    <thead>
 				<tr>
@@ -56,19 +61,24 @@
 			    <tbody>
 				<%
 				    for (Iterator it = Copias.iterator(); it.hasNext();) {
-					eCopia cat = (eCopia) it.next();
+					eCopia cop = (eCopia) it.next();
+                                        if(cop.getIdejemplar().getIdejemplar()==Ejemplar.getIdejemplar()){
+                                            
+                                        
 				%>
 				<tr>
-				    <td><%= cat.getIdcopia()%></td>
-				    <td><%= cat.getCodigo()%></td>
-				    <td><%= cat.getEstado() ? "Activo" : "Inactivo"%></td>
-				    <td><%= cat.getDisponible() ? "Si" : "No"%></td>
+				    <td><%= cop.getIdcopia()%></td>
+				    <td><%= cop.getCodigo()%></td>
+				    <td><%= cop.getEstado() ? "Activo" : "Inactivo"%></td>
+				    <td><%= cop.getDisponible() ? "Si" : "No"%></td>
 				    <td width="68">
-					<a class="editar" href="editar.jsp?id=<%= cat.getIdcopia()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
-					<a class="elimin" href="eliminar.jsp?id=<%= cat.getIdcopia()%>" title="Eliminar"><i class="material-icons">delete</i></a>
+					<a class="editar" href="editar.jsp?id=<%= cop.getIdcopia()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
+					<a class="elimin" href="eliminar.jsp?id=<%= cop.getIdcopia()%>" title="Eliminar"><i class="material-icons">delete</i></a>
 				    </td>
 				</tr>
-				<% }%>
+				<%  }
+                                   }
+                                %>
 			    </tbody>
 			</table>
 		    <% }%>

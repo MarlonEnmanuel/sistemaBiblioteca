@@ -77,6 +77,16 @@ public class eCopia implements Serializable {
         this.estado = estado;
         this.disponible = disponible;
     }
+    
+    public eCopia(Integer idcopia, Date fechareg, String codigo, boolean estado, boolean disponible,eEjemplar ideEjemplar) {
+        this.idcopia = idcopia;
+        this.fechareg = fechareg;
+        this.codigo = codigo;
+        this.estado = estado;
+        this.disponible = disponible;
+        this.idejemplar=ideEjemplar;
+                
+    }
 
     public Integer getIdcopia() {
         return idcopia;
