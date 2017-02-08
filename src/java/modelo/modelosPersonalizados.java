@@ -8,6 +8,7 @@ package modelo;
 import entidad.eCopia;
 import entidad.eEjemplar;
 import entidad.eUsuario;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,8 +46,7 @@ public class modelosPersonalizados {
 
     static public eEjemplar retornaEjemplarxCodigo(String codigo){
         try {
-            Query query = em.createQuery("SELECT e FROM eEjemplar e WHERE e.codigo = :codigo");
-            System.out.println("fin");
+            Query query = em.createQuery("SELECT e FROM ejemplar e WHERE e.codigo = :codigo");
             query.setParameter("codigo", codigo);
 
             eEjemplar eEjemplar = (eEjemplar) query.getSingleResult();
@@ -67,15 +67,15 @@ public class modelosPersonalizados {
         }
     }
     
-    static public List<eCopia> listaCopiaxCOdigo(String idejemplar){
+    static public List<eCopia> listaCopiaxCodigoEjemplar(String codigoejemplar){
         try {
-            Query query = em.createQuery("SELECT e FROM eCopia e WHERE e.idejemplar = :idejemplar");
-            query.setParameter("idejemplar", idejemplar);
+            Query query = em.createQuery("SELECT c FROM eCopia c INNER JOIN eEjemplar e ON c.idejemplar=e.idejemplar WHERE e.codigo = :codigoejemplar");
+            query.setParameter("codigoejemplar", codigoejemplar);
             
             List<eCopia> ls=query.getResultList();
             return ls;
         } catch (Exception e) {
-            return null;
+            return new ArrayList<eCopia>();
         }
     }
 

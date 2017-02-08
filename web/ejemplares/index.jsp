@@ -56,7 +56,8 @@
 			    <td><%=eje.getTitulo()%></td>
 			    <td><%=eje.getAutores()%></td>
                             <td><%=formato.format(eje.getPublicacion()) %></td>
-			    <td width="68">
+			    <td width="108">
+				<a class="editar" href="../copias?cod=<%=eje.getCodigo()%>" title="Ver Copias"><i class="material-icons">visibility</i></a>
 				<a class="editar" href="editar.jsp?id=<%=eje.getIdejemplar()%>" title="Editar"><i class="material-icons">mode_edit</i></a>
 				<a class="elimin" href="eliminar.jsp?id=<%=eje.getIdejemplar()%>" title="Eliminar"><i class="material-icons">delete</i></a>
 			    </td>

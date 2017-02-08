@@ -39,6 +39,9 @@
     <nav class="blue">
 	<div class="nav-wrapper container">
 	    <a href="#" class="brand-logo"><%= p_title %></a>
+	    <a href="#" data-activates="slide-out" class="button-collapse">
+		<i class="material-icons">menu</i>
+	    </a>
 	    <ul id="nav-mobile" class="right hide-on-med-and-down">
 		<li><a href="collapsible.html">Mi Perfil</a></li>
 	    </ul>
@@ -95,9 +98,6 @@
 	    <li><div class="divider blue-grey darken-1"></div></li>
 	    <li><a class="waves-effect" href="#!">Cerrar Sesión</a></li>
 	</ul>
-	<a href="#" data-activates="slide-out" class="button-collapse">
-	    <i class="material-icons">menu</i>
-	</a>
     </nav>
     <script>
 	$(".button-collapse").sideNav({
