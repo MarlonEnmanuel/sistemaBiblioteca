@@ -15,7 +15,19 @@
     String p_idcat = request.getParameter("idcat") != null ? request.getParameter("idcat") : "";
     
     modelo.eEjemplarJpaController me = new eEjemplarJpaController();
-    List<eEjemplar> Materiales = me.findeEjemplarEntities();
+    List<eEjemplar> auxMateriales = me.findeEjemplarEntities();
+    List<eEjemplar> Materiales = new ArrayList<eEjemplar>();
+    
+    if(Integer.parseInt(p_idcat)>0){
+	for (Iterator it = auxMateriales.iterator(); it.hasNext();) {
+	    eEjemplar eje = (eEjemplar) it.next();
+	    if(eje.getIdcategoria().getIdcategoria() == Integer.parseInt(p_idcat)){
+		Materiales.add(eje);
+	    }
+	}
+    }else{
+	Materiales = auxMateriales;
+    }
 
     modelo.eCategoriaJpaController mm = new eCategoriaJpaController();
     List<eCategoria> Categorias = mm.findeCategoriaEntities();
