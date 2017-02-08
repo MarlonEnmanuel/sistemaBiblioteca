@@ -101,6 +101,18 @@ public class eEjemplar implements Serializable {
         this.json = json;
         this.urlpdf = urlpdf;
     }
+    
+    public eEjemplar(Integer idejemplar, Date fechareg, String codigo, String titulo, String autores, Date publicacion, String json, String urlpdf,eCategoria cat) {
+        this.idejemplar = idejemplar;
+        this.fechareg = fechareg;
+        this.codigo = codigo;
+        this.titulo = titulo;
+        this.autores = autores;
+        this.publicacion = publicacion;
+        this.json = json;
+        this.urlpdf = urlpdf;
+        this.idcategoria=cat;
+    }
 
     public Integer getIdejemplar() {
         return idejemplar;

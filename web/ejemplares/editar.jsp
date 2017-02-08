@@ -14,7 +14,7 @@
     modelo.eCategoriaJpaController mm = new eCategoriaJpaController();
     List<eCategoria> ls = mm.findeCategoriaEntities();
     eEjemplar Ejemplar = ejc.findeEjemplar(id);
-    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@
 
 		<form action="/sistemaBiblioteca/servlets/ejemplar" method="POST">
 		    <input type="hidden" name="accion" value="actualizar">
-
+                    <input type="hidden" name="idejemplar" value="<%=Ejemplar.getIdejemplar()%>">
 		    <div class="input-field" style="margin-bottom: 30px">
 			<select id="idcategoria" name="idcategoria" tabindex="1" autofocus>
 			    <%

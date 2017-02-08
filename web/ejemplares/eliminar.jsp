@@ -1,8 +1,13 @@
+<%@page import="entidad.eEjemplar"%>
+<%@page import="modelo.eEjemplarJpaController"%>
 <%@page import="entidad.eCategoria"%>
 <%@page import="modelo.eCategoriaJpaController"%>
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_id = request.getParameter("id") != null ? request.getParameter("msj") : "";
+    int id=Integer.parseInt(request.getParameter("id"));
+    modelo.eEjemplarJpaController ejc=new eEjemplarJpaController();
+    eEjemplar eje=ejc.findeEjemplar(id);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +28,7 @@
 		<br>
 		<form action="../servlets/ejemplar" method="POST">
 		    <input type="hidden" name="accion" value="eliminar">
-		    <input type="hidden" name="idejemplar" value="<%= p_id %>">
+		    <input type="hidden" name="idejemplar" value="<%= eje.getIdejemplar() %>">
 		    
 		    <a class="waves-effect waves-light btn left" onclick="history.back()">Cancelar</A>
 		    <button class="waves-effect waves-light btn right">Eliminar</button>
