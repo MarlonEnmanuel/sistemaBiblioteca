@@ -87,9 +87,9 @@
 			</a>
 			<div class="collapsible-body blue-grey darken-1">
 			    <ul>
-				<li><a href="#!">Búsqueda</a></li>
-				<li><a href="#!">Préstamos</a></li>
-				<li><a href="#!">Devoluciones</a></li>
+				<li><a href="/sistemaBiblioteca/busqueda">Búsqueda</a></li>
+				<li><a href="/sistemaBiblioteca/prestamos">Préstamos</a></li>
+				<li><a href="/sistemaBiblioteca/devoluciones">Devoluciones</a></li>
 			    </ul>
 			</div>
 		    </li>
