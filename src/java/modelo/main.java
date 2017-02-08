@@ -20,7 +20,6 @@ public class main {
     
     public static void main(String[] args) {
         modelosPersonalizados p=new modelosPersonalizados();
-        ePrestamo eje=p.retornaPrestamoxCodigoCopia("101010");
-        System.out.println(eje.getIdprestamo());
+        //System.out.println(ls.size());
     }
 }
