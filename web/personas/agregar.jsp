@@ -32,7 +32,18 @@
 			<input type="text" id="apellidos" name="apellidos" class="validate" tabindex="3">
 			<label for="apellidos">Apellidos</label>
 		    </div>
-
+                    
+                    <div class="input-field">
+			<select id="facultad" name="facultad" tabindex="5">
+			    <option value="FICSA">FICSA</option>
+			    <option value="FIME">FIME</option>
+			    <option value="FACHSE">FACHSE</option>
+			    <option value="FIQUIA">FIQUIA</option>
+			    <option value="FACFYM">FACFYM</option>
+			</select>
+			<label for="facultad">Facultad</label>
+		    </div>
+                    
 		    <div class="input-field">
 			<select id="escuela" name="escuela" tabindex="4">
 			    <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
@@ -45,22 +56,11 @@
 		    </div>
 
 		    <div class="input-field">
-			<select id="facultad" name="facultad" tabindex="5">
-			    <option value="FICSA">FICSA</option>
-			    <option value="FIME">FIME</option>
-			    <option value="FACHSE">FACHSE</option>
-			    <option value="FIQUIA">FIQUIA</option>
-			    <option value="FACFYM">FACFYM</option>
-			</select>
-			<label for="facultad">Facultad</label>
-		    </div>
-
-		    <div class="input-field">
 			<select id="tipo" name="tipo" tabindex="6">
 			    <option value="Alumno">Alumno</option>
 			    <option value="Docente">Docente</option>
 			</select>
-			<label for="tipo">Facultad</label>
+			<label for="tipo">Tipo</label>
 		    </div>
 
 		    <br>

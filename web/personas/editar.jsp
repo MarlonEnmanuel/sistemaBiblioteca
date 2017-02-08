@@ -1,9 +1,11 @@
+<%@page import="modelo.ePersonaJpaController"%>
 <%@page import="entidad.ePersona"%>
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_id = request.getParameter("id") != null ? request.getParameter("id") : "0";
-
-    ePersona Persona = new ePersona();
+    int id=Integer.parseInt(request.getParameter("id"));
+    ePersonaJpaController pjc=new ePersonaJpaController();
+    ePersona Persona =pjc.findePersona(id);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +22,8 @@
 	    <div class="container">
 
 		<form action="../servlets/persona" method="POST">
-		    <input type="hidden" name="accion" value="insertar">
+		    <input type="hidden" name="accion" value="actualizar">
+                    <input type="hidden" name="idpersona" value="<%=Persona.getIdpersona()%>">
 
 		    <div class="input-field">
 			<input type="text" id="codigo" name="codigo" class="validate" maxlength="45" tabindex="1" autofocus value="<%= Persona.getCodigo()%>">

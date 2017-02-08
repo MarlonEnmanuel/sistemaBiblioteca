@@ -10,17 +10,10 @@
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_user = request.getParameter("user") != null ? request.getParameter("user") : "";
     String p_cod = request.getParameter("cod") != null ? request.getParameter("cod") : "";
-<<<<<<< HEAD
     eCopiaJpaController cjc=new eCopiaJpaController();
     modelosPersonalizados mp=new modelosPersonalizados();
     eEjemplar Ejemplar = mp.retornaEjemplarxCodigo(p_cod);
     List<eCopia> Copias = cjc.findeCopiaEntities();
-    
-=======
-    
-    eEjemplar Ejemplar = modelosPersonalizados.retornaEjemplarxCodigo(p_cod);
-    List<eCopia> Copias = modelosPersonalizados.listaCopiaxCodigoEjemplar(p_cod);
->>>>>>> origin/master
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -3,6 +3,7 @@
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_id = request.getParameter("id") != null ? request.getParameter("msj") : "";
+    int id=Integer.parseInt(request.getParameter("id"));
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
 		<br>
 		<form action="../servlets/persona" method="POST">
 		    <input type="hidden" name="accion" value="eliminar">
-		    <input type="hidden" name="idpersona" value="<%= p_id%>">
+		    <input type="hidden" name="idpersona" value="<%= id%>">
 
 		    <a class="waves-effect waves-light btn left" onclick="history.back()">Cancelar</A>
 		    <button class="waves-effect waves-light btn right">Eliminar</button>
