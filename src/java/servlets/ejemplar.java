@@ -44,38 +44,41 @@ public class ejemplar extends HttpServlet {
 	response.setContentType("text/html;charset=UTF-8");
 	PrintWriter out = response.getWriter();
 	String accion = request.getParameter("accion") != null ? request.getParameter("accion") : "";
-        if (accion.equals("insertar")) {
-            this.insertar(request, response);
-        }
-        if (accion.equals("actualizar")) {
-            this.actualizar(request, response);
-        }
-        if (accion.equals("eliminar")) {
-            this.eliminar(request, response);
-        }
+	if (accion.equals("insertar")) {
+	    this.insertar(request, response);
+	}
+	if (accion.equals("actualizar")) {
+	    this.actualizar(request, response);
+	}
+	if (accion.equals("eliminar")) {
+	    this.eliminar(request, response);
+	}
     }
-    
+
     protected void insertar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 	/*
 	* parámetros recibidos
 	* nombre, descrip, datos
-	*/
+	 */
 	PrintWriter out = response.getWriter();
 	try {
-            Date date=new Date();
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-            Date datePu=formato.parse(request.getParameter("publicacion"));
-            eCategoria cat=new eCategoria(Integer.parseInt(request.getParameter("idcategoria")));
-            eEjemplar eje=new eEjemplar(null, date, request.getParameter("codigo"), request.getParameter("titulo"), request.getParameter("autores"), datePu, "{}", "",cat);
-            eEjemplarJpaController ejc= new eEjemplarJpaController();
-            if (ejc.create(eje)) {
-                response.sendRedirect("/sistemaBiblioteca/ejemplares");
-            }
+	    Date date = new Date();
+	    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	    Date datePu = formato.parse(request.getParameter("publicacion"));
+	    eCategoria cat = new eCategoria(Integer.parseInt(request.getParameter("idcategoria")));
+	    
+	    eEjemplar eje = new eEjemplar(null, date, request.getParameter("codigo"), request.getParameter("titulo"), request.getParameter("autores"), datePu, "{}", "", cat);
+	    eEjemplarJpaController ejc = new eEjemplarJpaController();
+	    if (ejc.create(eje)) {
+		response.sendRedirect("/sistemaBiblioteca/ejemplares");
+	    }else{
+		response.sendRedirect("/sistemaBiblioteca/ejemplares/agregar.jsp?msj=Error al agregar");
+	    }
 	} finally {
 	    out.close();
 	}
     }
-    
+
     protected void actualizar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 //	/*
 //	* parámetros recibidos
@@ -83,41 +86,43 @@ public class ejemplar extends HttpServlet {
 //	*/
 	PrintWriter out = response.getWriter();
 	try {
-            Date date=new Date();
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-            Date datePu=formato.parse(request.getParameter("publicacion"));
-            eCategoria cat=new eCategoria(Integer.parseInt(request.getParameter("idcategoria")));
-            System.out.println("id ejemplar "+Integer.parseInt(request.getParameter("idejemplar")));
-            eEjemplar eje=new eEjemplar(Integer.parseInt(request.getParameter("idejemplar")), date, request.getParameter("codigo"), request.getParameter("titulo"), request.getParameter("autores"), datePu, "{}", "",cat);
-            eEjemplarJpaController ejc=new eEjemplarJpaController();
-            try {
-                if (ejc.actualiza(eje)) {
-                    response.sendRedirect("/sistemaBiblioteca/ejemplares");
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
-            }
+	    Date date = new Date();
+	    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	    Date datePu = formato.parse(request.getParameter("publicacion"));
+	    eCategoria cat = new eCategoria(Integer.parseInt(request.getParameter("idcategoria")));
+	    
+	    eEjemplar eje = new eEjemplar(Integer.parseInt(request.getParameter("idejemplar")), date, request.getParameter("codigo"), request.getParameter("titulo"), request.getParameter("autores"), datePu, "{}", "", cat);
+	    eEjemplarJpaController ejc = new eEjemplarJpaController();
+	    try {
+		if (ejc.actualiza(eje)) {
+		    response.sendRedirect("/sistemaBiblioteca/ejemplares");
+		}else{
+		    response.sendRedirect("/sistemaBiblioteca/ejemplares?msj=Error al editar");
+		}
+	    } catch (Exception ex) {
+		Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
+	    }
 	} finally {
 	    out.close();
 	}
     }
-    
+
     protected void eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IllegalOrphanException, NonexistentEntityException {
 	/*
 	* parámetros recibidos
 	* idcategoria
-	*/
+	 */
 	PrintWriter out = response.getWriter();
 	try {
-            eEjemplar eje=new eEjemplar(Integer.parseInt(request.getParameter("idejemplar")));
-            eEjemplarJpaController ejc=new eEjemplarJpaController();
-            try {
-                if(ejc.destroy(eje)){
-                    response.sendRedirect("/sistemaBiblioteca/ejemplares");
-                }
-            } catch (NonexistentEntityException ex) {
-                Logger.getLogger(categoria.class.getName()).log(Level.SEVERE, null, ex);
-            }
+	    eEjemplar eje = new eEjemplar(Integer.parseInt(request.getParameter("idejemplar")));
+	    eEjemplarJpaController ejc = new eEjemplarJpaController();
+	    try {
+		if (ejc.destroy(eje)) {
+		    response.sendRedirect("/sistemaBiblioteca/ejemplares");
+		}
+	    } catch (NonexistentEntityException ex) {
+		Logger.getLogger(categoria.class.getName()).log(Level.SEVERE, null, ex);
+	    }
 	} finally {
 	    out.close();
 	}
@@ -135,15 +140,15 @@ public class ejemplar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalOrphanException ex) {
-            Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+	try {
+	    processRequest(request, response);
+	} catch (ParseException ex) {
+	    Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
+	} catch (IllegalOrphanException ex) {
+	    Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
+	} catch (NonexistentEntityException ex) {
+	    Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
+	}
     }
 
     /**
@@ -157,15 +162,15 @@ public class ejemplar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalOrphanException ex) {
-            Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+	try {
+	    processRequest(request, response);
+	} catch (ParseException ex) {
+	    Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
+	} catch (IllegalOrphanException ex) {
+	    Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
+	} catch (NonexistentEntityException ex) {
+	    Logger.getLogger(ejemplar.class.getName()).log(Level.SEVERE, null, ex);
+	}
     }
 
     /**

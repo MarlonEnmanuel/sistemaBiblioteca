@@ -14,7 +14,7 @@
     modelo.eCategoriaJpaController mm = new eCategoriaJpaController();
     List<eCategoria> ls = mm.findeCategoriaEntities();
     eEjemplar Ejemplar = ejc.findeEjemplar(id);
-    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -61,7 +61,7 @@
 		    </div>
 
 		    <div class="input-field">
-			<input type="date" class="datepicker" id="publicacion" name="publicacion" tabindex="5" value="<%= formato.format(Ejemplar.getPublicacion()) %>">
+			<input type="date" class="datepicker" id="publicacion" name="publicacion" tabindex="5" data-value="<%= formato.format(Ejemplar.getPublicacion()) %>">
 			<label for="publicacion">Fecha de Publicación</label>
 		    </div>
 
