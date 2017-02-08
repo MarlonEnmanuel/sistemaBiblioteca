@@ -21,11 +21,11 @@
 <html lang="es">
     <head>
 	<%@include file="../partials/headapp.html" %>
-	<title>Copias</title>
+	<title>Búsqueda</title>
     </head>
     <body>
 	<jsp:include page="../partials/header.jsp">
-	    <jsp:param name="title" value="Copias"/>
+	    <jsp:param name="title" value="Buscar Material"/>
 	</jsp:include>
 	<main>
 	    <div class="container">
@@ -41,14 +41,14 @@
 			    <option value="<%= cat.getIdcategoria()%>" <%= cat.getIdcategoria().toString().equals(p_idcat)?"selected":"" %>><%= cat.getNombre()%></option>
 			    <% }%>
 			</select>
-			<label for="idcat">Codigo de Ejemplar</label>
+			<label for="idcat">Categoría</label>
 		    </div>
 		    <div class="col s6 input-field">
 			<input id="nom" name="nom" type="text" value="<%= p_nom %>">
-			<label for="nom">Codigo de Ejemplar</label>
+			<label for="nom">Nombre a buscar</label>
 		    </div>
-		    <div class="col s12 m6 input-field">
-			<button class="waves-effect waves-light btn">Buscar</button>
+		    <div class="col s12 input-field">
+			<button class="waves-effect waves-light btn right">Buscar</button>
 		    </div>
 		</form>
 
@@ -92,6 +92,7 @@
 	</main>
 	<%@include file="../partials/footer.jsp" %>
 	<script>
+	    $('select').material_select();
 	    Materialize.toast('<%= p_msj%>');
 	</script>
     </body>
