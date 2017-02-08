@@ -17,16 +17,16 @@
 <html lang="es">
     <head>
 	<%@include file="../partials/headapp.html" %>
-	<title>Copias</title>
+	<title>Reporte de Préstamos</title>
     </head>
     <body>
 	<jsp:include page="../partials/header.jsp">
-	    <jsp:param name="title" value="Copias"/>
+	    <jsp:param name="title" value="Reporte de Préstamos"/>
 	</jsp:include>
 	<main>
 	    <div class="container">
 		<div class="right-align hide-on-print">
-		    <button class="imprimir waves-effect waves-light btn right" onClick="window.print()">Imprimir</button>
+		    <button class="imprimir waves-effect waves-light btn" onClick="window.print()">Imprimir</button>
 		</div>
 		<h4 class="center-align">
 		    Reporte de Préstamos Pendientes
