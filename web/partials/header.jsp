@@ -96,6 +96,22 @@
 		    </li>
 		</ul>
 	    </li>
+	    <li class="no-padding">
+		<ul class="collapsible collapsible-accordion">
+		    <li>
+			<a class="collapsible-header">
+			    Reportes
+			    <i class="material-icons right">arrow_drop_down</i>
+			</a>
+			<div class="collapsible-body blue-grey darken-1">
+			    <ul>
+				<li><a href="/sistemaBiblioteca/rep_prestamos">De préstamos</a></li>
+				<li><a href="/sistemaBiblioteca/rep_materiales">De materiales</a></li>
+			    </ul>
+			</div>
+		    </li>
+		</ul>
+	    </li>
 	    <li><div class="divider blue-grey darken-1"></div></li>
 	    <li><a class="waves-effect" href="#!">Cerrar Sesión</a></li>
 	</ul>

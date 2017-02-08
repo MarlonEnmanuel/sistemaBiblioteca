@@ -8,7 +8,7 @@ import entidad.eCopia;
 import entidad.eEjemplar;
 import entidad.ePersona;
 import entidad.ePrestamo;
-import entidad.ePrestamo_;
+import entidad.ePrestamo;
 import java.sql.Date;
 import java.util.List;
 
