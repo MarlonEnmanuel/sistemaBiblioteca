@@ -34,86 +34,63 @@ public class ePrestamoJpaController implements Serializable {
     }
  
 
-    public void create(ePrestamo ePrestamo) {
+    public boolean create(ePrestamo ePrestamo) {
         try {
             em.getTransaction().begin();
-            ePersona idpersona = ePrestamo.getIdpersona();
-            if (idpersona != null) {
-                idpersona = em.getReference(idpersona.getClass(), idpersona.getIdpersona());
-                ePrestamo.setIdpersona(idpersona);
-            }
-            eCopia idcopia = ePrestamo.getIdcopia();
-            if (idcopia != null) {
-                idcopia = em.getReference(idcopia.getClass(), idcopia.getIdcopia());
-                ePrestamo.setIdcopia(idcopia);
-            }
             em.persist(ePrestamo);
-            if (idpersona != null) {
-                idpersona.getEPrestamoList().add(ePrestamo);
-                idpersona = em.merge(idpersona);
-            }
-            if (idcopia != null) {
-                idcopia.getEPrestamoList().add(ePrestamo);
-                idcopia = em.merge(idcopia);
-            }
             em.getTransaction().commit();
-        } finally {
+            return true;
+        }catch(Exception e){
+            return false;
+        }finally {
             if (em != null) {
                 em.close();
             }
         }
     }
 
-    public void edit(ePrestamo ePrestamo) throws NonexistentEntityException, Exception {
+    public boolean edit(ePrestamo ePrestamo) throws NonexistentEntityException, Exception {
         try {
-            em.getTransaction().begin();
             ePrestamo persistentePrestamo = em.find(ePrestamo.class, ePrestamo.getIdprestamo());
-            ePersona idpersonaOld = persistentePrestamo.getIdpersona();
-            ePersona idpersonaNew = ePrestamo.getIdpersona();
-            eCopia idcopiaOld = persistentePrestamo.getIdcopia();
-            eCopia idcopiaNew = ePrestamo.getIdcopia();
-            if (idpersonaNew != null) {
-                idpersonaNew = em.getReference(idpersonaNew.getClass(), idpersonaNew.getIdpersona());
-                ePrestamo.setIdpersona(idpersonaNew);
-            }
-            if (idcopiaNew != null) {
-                idcopiaNew = em.getReference(idcopiaNew.getClass(), idcopiaNew.getIdcopia());
-                ePrestamo.setIdcopia(idcopiaNew);
-            }
-            ePrestamo = em.merge(ePrestamo);
-            if (idpersonaOld != null && !idpersonaOld.equals(idpersonaNew)) {
-                idpersonaOld.getEPrestamoList().remove(ePrestamo);
-                idpersonaOld = em.merge(idpersonaOld);
-            }
-            if (idpersonaNew != null && !idpersonaNew.equals(idpersonaOld)) {
-                idpersonaNew.getEPrestamoList().add(ePrestamo);
-                idpersonaNew = em.merge(idpersonaNew);
-            }
-            if (idcopiaOld != null && !idcopiaOld.equals(idcopiaNew)) {
-                idcopiaOld.getEPrestamoList().remove(ePrestamo);
-                idcopiaOld = em.merge(idcopiaOld);
-            }
-            if (idcopiaNew != null && !idcopiaNew.equals(idcopiaOld)) {
-                idcopiaNew.getEPrestamoList().add(ePrestamo);
-                idcopiaNew = em.merge(idcopiaNew);
-            }
+            em.getTransaction().begin();
+            persistentePrestamo.setCodigo(ePrestamo.getCodigo());
+            persistentePrestamo.setDevuelto(ePrestamo.getDevuelto());
+            persistentePrestamo.setFechadev(ePrestamo.getFechadev());
+            persistentePrestamo.setFechafin(ePrestamo.getFechafin());
+            persistentePrestamo.setFechaini(ePrestamo.getFechaini());
+            persistentePrestamo.setFechareg(ePrestamo.getFechareg());
+            persistentePrestamo.setIdcopia(ePrestamo.getIdcopia());
+            persistentePrestamo.setIdpersona(ePrestamo.getIdpersona());
+            persistentePrestamo.setIdprestamo(ePrestamo.getIdprestamo());
             em.getTransaction().commit();
+            return true;
         } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Integer id = ePrestamo.getIdprestamo();
-                if (findePrestamo(id) == null) {
-                    throw new NonexistentEntityException("The ePrestamo with id " + id + " no longer exists.");
-                }
-            }
-            throw ex;
-        } finally {
-            if (em != null) {
-                em.close();
-            }
+            System.out.println(ex.getMessage());
+            return false;
         }
     }
 
+    public boolean actualiza(ePrestamo ePrestamo)throws NonexistentEntityException, Exception{
+        try {
+            ePrestamo persistentePrestamo = em.find(ePrestamo.class, ePrestamo.getIdprestamo());
+            em.getTransaction().begin();
+            persistentePrestamo.setCodigo(ePrestamo.getCodigo());
+            persistentePrestamo.setDevuelto(ePrestamo.getDevuelto());
+            persistentePrestamo.setFechadev(ePrestamo.getFechadev());
+            persistentePrestamo.setFechafin(ePrestamo.getFechafin());
+            persistentePrestamo.setFechaini(ePrestamo.getFechaini());
+            persistentePrestamo.setFechareg(ePrestamo.getFechareg());
+            persistentePrestamo.setIdcopia(ePrestamo.getIdcopia());
+            persistentePrestamo.setIdpersona(ePrestamo.getIdpersona());
+            persistentePrestamo.setIdprestamo(ePrestamo.getIdprestamo());
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+    
     public void destroy(Integer id) throws NonexistentEntityException {
         try {
             em.getTransaction().begin();
@@ -170,7 +147,7 @@ public class ePrestamoJpaController implements Serializable {
         try {
             return em.find(ePrestamo.class, id);
         } finally {
-            em.close();
+            //em.close();
         }
     }
 

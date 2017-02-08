@@ -27,14 +27,13 @@
 			<input type="text" id="codigopersona" name="codigopersona" class="validate" required maxlength="45" tabindex="2">
 			<label for="codigopersona">Código Universitario</label>
 		    </div>
-
 		    <div class="col s12 m6 input-field">
-			<input type="date" class="datepicker1" id="fechaini" name="fechaini" tabindex="3">
+			<input type="date" class="datepicker1" id="fechaini" name="fechaini" tabindex="4">
 			<label for="fechaini">Fecha de Préstamo</label>
 		    </div>
 
 		    <div class="col s12 m6 input-field">
-			<input type="date" class="datepicker2" id="fechafin" name="fechafin" tabindex="4">
+			<input type="date" class="datepicker2" id="fechafin" name="fechafin" tabindex="5">
 			<label for="fechafin">Fecha de Devolución</label>
 		    </div>
 

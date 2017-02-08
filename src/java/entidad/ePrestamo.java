@@ -45,6 +45,9 @@ public class ePrestamo implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechareg;
     @Basic(optional = false)
+    @Column(name = "codigo")
+    private String codigo;
+    @Basic(optional = false)
     @Column(name = "fechaini")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaini;
@@ -55,6 +58,10 @@ public class ePrestamo implements Serializable {
     @Basic(optional = false)
     @Column(name = "devuelto")
     private boolean devuelto;
+    @Basic(optional = false)
+    @Column(name = "fechadev")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechadev;
     @JoinColumn(name = "idpersona", referencedColumnName = "idpersona")
     @ManyToOne(optional = false)
     private ePersona idpersona;
@@ -69,14 +76,28 @@ public class ePrestamo implements Serializable {
         this.idprestamo = idprestamo;
     }
 
-    public ePrestamo(Integer idprestamo, Date fechareg, Date fechaini, Date fechafin, boolean devuelto) {
+    public ePrestamo(Integer idprestamo, Date fechareg, String codigo,Date fechaini, Date fechafin, boolean devuelto,Date fechadev) {
         this.idprestamo = idprestamo;
         this.fechareg = fechareg;
+        this.codigo=codigo;
         this.fechaini = fechaini;
         this.fechafin = fechafin;
         this.devuelto = devuelto;
+        this.fechadev=fechadev;
     }
 
+    public ePrestamo(Integer idprestamo, Date fechareg, String codigo,Date fechaini, Date fechafin, boolean devuelto,Date fechadev,eCopia idcopia,ePersona idpersona) {
+        this.idprestamo = idprestamo;
+        this.fechareg = fechareg;
+        this.codigo=codigo;
+        this.fechaini = fechaini;
+        this.fechafin = fechafin;
+        this.devuelto = devuelto;
+        this.fechadev=fechadev;
+        this.idcopia=idcopia;
+        this.idpersona=idpersona;
+    }
+    
     public Integer getIdprestamo() {
         return idprestamo;
     }
@@ -132,6 +153,24 @@ public class ePrestamo implements Serializable {
     public void setIdcopia(eCopia idcopia) {
         this.idcopia = idcopia;
     }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Date getFechadev() {
+        return fechadev;
+    }
+
+    public void setFechadev(Date fechadev) {
+        this.fechadev = fechadev;
+    }
+    
+    
 
     @Override
     public int hashCode() {

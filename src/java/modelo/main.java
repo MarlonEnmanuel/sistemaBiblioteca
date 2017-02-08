@@ -7,6 +7,8 @@ package modelo;
 import entidad.eCopia;
 import entidad.eEjemplar;
 import entidad.ePersona;
+import entidad.ePrestamo;
+import entidad.ePrestamo_;
 import java.sql.Date;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class main {
     
     public static void main(String[] args) {
         modelosPersonalizados p=new modelosPersonalizados();
-        eEjemplar eje = p.retornaEjemplarxCodigo("1010");
-        System.out.println(eje.getIdejemplar());
+        ePrestamo eje=p.retornaPrestamoxCodigoCopia("101010");
+        System.out.println(eje.getIdprestamo());
     }
 }

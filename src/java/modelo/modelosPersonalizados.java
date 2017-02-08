@@ -5,7 +5,10 @@
  */
 package modelo;
 
+import entidad.eCopia;
 import entidad.eEjemplar;
+import entidad.ePersona;
+import entidad.ePrestamo;
 import entidad.eUsuario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,6 +49,40 @@ public class modelosPersonalizados {
             query.setParameter("codigo", codigo);
             eEjemplar eje=(eEjemplar) query.getSingleResult();
             return eje;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public eCopia retornaCopiaXcodigo(String codigo){
+        try {
+        Query query=em.createQuery("SELECT e FROM eCopia e WHERE e.codigo= :codigo AND e.disponible=1");
+            query.setParameter("codigo", codigo);
+            eCopia cop=(eCopia) query.getSingleResult();
+            return cop;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public ePersona retornaPersonaXcodigo(String codigo){
+        try {
+            Query query=em.createQuery("SELECT e FROM ePersona e WHERE e.codigo= :codigo");
+            query.setParameter("codigo", codigo);
+            ePersona cop=(ePersona) query.getSingleResult();
+            return cop;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    
+    public ePrestamo retornaPrestamoxCodigoCopia(String codigo){
+        try {
+            Query query=em.createQuery("SELECT e FROM ePrestamo e WHERE e.codigo= :codigo and e.devuelto=0");
+            query.setParameter("codigo", codigo);
+            ePrestamo pre=(ePrestamo) query.getSingleResult();
+            return pre;
         } catch (Exception e) {
             return null;
         }
