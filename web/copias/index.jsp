@@ -9,7 +9,6 @@
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
     String p_user = request.getParameter("user") != null ? request.getParameter("user") : "";
     String p_cod = request.getParameter("cod") != null ? request.getParameter("cod") : "";
-
     eEjemplar Ejemplar = modelosPersonalizados.retornaEjemplarxCodigo(p_cod);
     List<eCopia> Copias = modelosPersonalizados.listaCopiaxCodigoEjemplar(p_cod);
 %>
