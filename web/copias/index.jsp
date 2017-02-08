@@ -45,8 +45,7 @@
 			<br>
 			<br>
 			<h5 class="center-align">Código de ejemplar no existe</h5>
-		    <% } else { 
-                    %>
+		    <% } else { %>
 			<table class="bordered striped">
 			    <thead>
 				<tr>
