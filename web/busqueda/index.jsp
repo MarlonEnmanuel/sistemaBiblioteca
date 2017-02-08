@@ -1,3 +1,4 @@
+<%@page import="modelo.eCategoriaJpaController"%>
 <%@page import="entidad.eCategoria"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
@@ -6,9 +7,12 @@
 <%@page import="java.util.List"%>
 <%
     String p_msj = request.getParameter("msj") != null ? request.getParameter("msj") : "";
-    String p_idcategoria = request.getParameter("idcat") != null ? request.getParameter("msj") : "0";
-    String p_titulo = request.getParameter("nom") != null ? request.getParameter("nom") : "";
-    
+    String p_idcat = request.getParameter("idcat") != null ? request.getParameter("msj") : "0";
+    String p_nom = request.getParameter("nom") != null ? request.getParameter("nom") : "";
+
+    modelo.eCategoriaJpaController mm = new eCategoriaJpaController();
+    List<eCategoria> Categorias = mm.findeCategoriaEntities();
+
     //Buscar ejemplares por idcotegoria y titulo(like)
     List<eEjemplar> ls = new ArrayList<eEjemplar>();
 %>
@@ -27,13 +31,24 @@
 	    <div class="container">
 
 		<form method="GET" class="row">
-		    <div class="col s12 m6 input-field">
-			<input type="text" name="cod" id="cod" value="<%= p_cod%>" autofocus required>
-			<label for="cod">Codigo de Ejemplar</label>
+		    <div class="col s6 input-field">
+			<select name="idcat" id="idcat">
+			    <option value="0"> --- </option>
+			    <%
+				for (Iterator it = Categorias.iterator(); it.hasNext();) {
+				    eCategoria cat = (eCategoria) it.next();
+			    %>
+			    <option value="<%= cat.getIdcategoria()%>" <%= cat.getIdcategoria().toString().equals(p_idcat)?"selected":"" %>><%= cat.getNombre()%></option>
+			    <% }%>
+			</select>
+			<label for="idcat">Codigo de Ejemplar</label>
+		    </div>
+		    <div class="col s6 input-field">
+			<input id="nom" name="nom" type="text" value="<%= p_nom %>">
+			<label for="nom">Codigo de Ejemplar</label>
 		    </div>
 		    <div class="col s12 m6 input-field">
-			<button class="waves-effect waves-light btn">Buscar Copias</button>
-                        <a href="agregar.jsp" class="waves-effect waves-light btn right">Nueva Copia</a>
+			<button class="waves-effect waves-light btn">Buscar</button>
 		    </div>
 		</form>
 
